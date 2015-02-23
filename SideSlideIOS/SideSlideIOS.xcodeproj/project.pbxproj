@@ -16,6 +16,7 @@
 		364263791A9A7CBB0070C877 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 364263781A9A7CBB0070C877 /* Images.xcassets */; };
 		3642637C1A9A7CBB0070C877 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3642637A1A9A7CBB0070C877 /* LaunchScreen.xib */; };
 		364263881A9A7CBC0070C877 /* SideSlideIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 364263871A9A7CBC0070C877 /* SideSlideIOSTests.m */; };
+		364263941A9A7E560070C877 /* SideSlideHub.m in Sources */ = {isa = PBXBuildFile; fileRef = 364263931A9A7E560070C877 /* SideSlideHub.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		364263811A9A7CBC0070C877 /* SideSlideIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideSlideIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		364263861A9A7CBC0070C877 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364263871A9A7CBC0070C877 /* SideSlideIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SideSlideIOSTests.m; sourceTree = "<group>"; };
+		364263921A9A7E560070C877 /* SideSlideHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSlideHub.h; sourceTree = "<group>"; };
+		364263931A9A7E560070C877 /* SideSlideHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSlideHub.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 		364263651A9A7CBB0070C877 /* SideSlideIOS */ = {
 			isa = PBXGroup;
 			children = (
+				364263911A9A7E050070C877 /* SideSlide */,
 				3642636A1A9A7CBB0070C877 /* AppDelegate.h */,
 				3642636B1A9A7CBB0070C877 /* AppDelegate.m */,
 				3642636D1A9A7CBB0070C877 /* GameScene.h */,
@@ -125,6 +129,15 @@
 				364263861A9A7CBC0070C877 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		364263911A9A7E050070C877 /* SideSlide */ = {
+			isa = PBXGroup;
+			children = (
+				364263921A9A7E560070C877 /* SideSlideHub.h */,
+				364263931A9A7E560070C877 /* SideSlideHub.m */,
+			);
+			name = SideSlide;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				364263941A9A7E560070C877 /* SideSlideHub.m in Sources */,
 				364263741A9A7CBB0070C877 /* GameViewController.m in Sources */,
 				3642636C1A9A7CBB0070C877 /* AppDelegate.m in Sources */,
 				3642636F1A9A7CBB0070C877 /* GameScene.m in Sources */,

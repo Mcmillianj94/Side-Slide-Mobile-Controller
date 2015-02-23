@@ -7,7 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "SideSlideHub.h"
 
 @interface GameScene : SKScene
+
+
 
 @end
