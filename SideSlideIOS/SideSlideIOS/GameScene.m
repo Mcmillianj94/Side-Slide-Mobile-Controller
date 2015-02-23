@@ -7,12 +7,17 @@
 //
 
 #import "GameScene.h"
+@interface GameScene(){
+    SideSlideHub* SSController;
+}
+
+@end
 
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
-    SideSlideHub *SSController = [[SideSlideHub alloc] initWithScene:self.scene barColor:nil pressurePointColor:[UIColor redColor] pressurePointAlpha:0.5f barWidth:300];
+    SSController = [[SideSlideHub alloc] initWithScene:self.scene barColor:nil pressurePointColor:[UIColor redColor] pressurePointAlpha:0.5f barWidth:80];
     
     SSController.position = CGPointMake(self.frame.size.width/2 , self.frame.size.height/2);
     SSController.color = [UIColor greenColor];
@@ -21,7 +26,11 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
+    [SSController touchesBegan:touches withEvent:event];
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    [SSController touchesMoved:touches withEvent:event];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
