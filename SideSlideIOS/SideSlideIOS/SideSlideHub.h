@@ -15,4 +15,5 @@
              pressurePointColor: (UIColor*)pressurePointColor
              pressurePointAlpha: (float)pressurePointAlpha
                        barWidth: (float)barWidth;
+
 @end

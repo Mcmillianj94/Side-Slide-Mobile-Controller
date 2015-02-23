@@ -52,23 +52,49 @@
         self.pressurePointRight.fillColor = pressurePointColor;
         self.pressurePointRight.alpha = pressurePointAlpha;
         [sideBarRight addChild:self.pressurePointRight];
+        
+        [self setUserInteractionEnabled:YES];
     }
     return self;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    UITouch *tap = [touches anyObject];
-    initialTouchLocation = [tap locationInNode:self];
+    [super touchesBegan:touches withEvent:event];
+    for (UITouch* touch in touches) {
+        CGPoint location = [touch locationInNode:self];
+        
+        SKNode* node = [self nodeAtPoint:location];
+        
+        if (node.name == self.rightPPName) {
+            [self.pressurePointRight setPosition:location];
+            NSLog(@"Right moved");
+            
+            
+        }
+    }
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    SKNode *node = [self nodeAtPoint: initialTouchLocation];
+    [super touchesEnded:touches withEvent:event];
     
-    UITouch *tap = [touches anyObject];
-    CGPoint newLocation = [tap locationInNode:self];
-    if (node.name == self.rightPPName) {
-        [self.pressurePointRight setPosition:newLocation];
+    
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch* touch in touches) {
+        CGPoint location = [touch locationInNode:self];
+        
+        SKNode* node = [self nodeAtPoint:location];
+        
+        if (node.name == self.rightPPName) {
+            [self.pressurePointRight setPosition:CGPointMake(self.parent.frame.size.width /2, self.parent.frame.size.height /2)];
+            NSLog(@"Right moved");
+            
+            
+        }
     }
     
 }
+
 @end
