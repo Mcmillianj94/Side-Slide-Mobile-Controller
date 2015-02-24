@@ -15,6 +15,8 @@
 @property NSString* rightPPName;
 @property NSString* leftPPName;
 @property SKScene* gameScene;
+@property BOOL leftPointIsActive;
+@property BOOL rightPointIsActive;
 @end
 
 @implementation SideSlideHub
@@ -60,41 +62,68 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [super touchesBegan:touches withEvent:event];
-    for (UITouch* touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKNode* node = [self nodeAtPoint:location];
-        
-        if (node.name == self.rightPPName) {
-            [self.pressurePointRight setPosition:location];
-            NSLog(@"Right moved");
-            
-            
-        }
-    }
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    [super touchesEnded:touches withEvent:event];
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
+    UITouch *touch = [touches anyObject];
+    CGPoint positionInScene = [touch locationInNode:self];
+    //NSArray* childrenNodes = [self nodesAtPoint:positionInScene];
     
+    ////Code To check if both pressure points are active (touched)
+    //Commeted out for testing puposes
+    /*
+    self.leftPointIsActive = false;
+    self.rightPointIsActive = false;
+
+    for (SKNode* node in childrenNodes) {
+        if (node.name == self.leftPPName) self.leftPointIsActive = true;
+        if (node.name == self.rightPPName) self.rightPointIsActive = true;
+        
+        if (self.leftPointIsActive && self.rightPointIsActive) {
+            SKNode *rightPP = [self childNodeWithName:self.leftPPName];
+            SKNode* leftPP = [self childNodeWithName:self.rightPPName];
+            SKAction * actionMove = [SKAction moveTo:CGPointMake(leftPP.position.x, positionInScene.y) duration: 0];
+            [rightPP runAction:actionMove];
+            [leftPP runAction:actionMove];
+        }
+    }*/
+    
+    ////This is the code im using for testing only moves the right button
+    // Create the actions
+    SKAction * actionMove = [SKAction moveTo:CGPointMake(self.pressurePointRight.position.x, positionInScene.y) duration:0];
+    [self.pressurePointRight runAction:actionMove];
+
     
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch* touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKNode* node = [self nodeAtPoint:location];
-        
-        if (node.name == self.rightPPName) {
-            [self.pressurePointRight setPosition:CGPointMake(self.parent.frame.size.width /2, self.parent.frame.size.height /2)];
-            NSLog(@"Right moved");
-            
-            
-        }
-    }
+    [super touchesEnded:touches withEvent:event];
     
+    ////Code To check if both pressure points are active (touched)
+    //Commeted out for testing puposes
+    /*
+    UITouch *touch = [touches anyObject];
+    CGPoint positionInScene = [touch locationInNode:self];
+    NSArray* childrenNodes = [self nodesAtPoint:positionInScene];
+    //Set active point false if released
+    for (SKNode* node in childrenNodes) {
+        if (node.name != self.leftPPName) self.leftPointIsActive = false;
+        if (node.name != self.rightPPName) self.rightPointIsActive = false;
+        
+        ////One or both of the pressure points were so the controller goes into Rest_State
+        //Set both buttons back to center (Rest_State)
+        if (!self.leftPointIsActive && self.rightPointIsActive) {
+            SKAction * actionMove = [SKAction moveTo:CGPointMake(self.pressurePointLeft.position.x, 0) duration: 0];
+            [self.pressurePointRight runAction:actionMove];
+            [self.pressurePointLeft runAction:actionMove];
+        }
+    }*/
+    
+    ////This is the code im using for testing only moves the right button
+    SKAction * actionMove = [SKAction moveTo:CGPointMake(self.pressurePointLeft.position.x, 0) duration: 0];
+    [self.pressurePointRight runAction:actionMove];
 }
 
 @end
